@@ -118,39 +118,164 @@ Each team has:
   * `eda`
   * `reporting`
 
-### How Contributions Work
-
-1. **Create a feature branch** from your group branch
-   Example:
-
-   ```bash
-   git checkout eda
-   git checkout -b eda-county-analysis
-   ```
-
-2. **Work only in your feature branch**
-
-3. **Push changes and open a Pull Request (PR)** to your group branch
-
-4. **Group lead reviews and merges**
-
-5. **Group lead opens PR from group branch → `dev`**
-
-6. **Project lead merges `dev` → `main` at milestones**
-
-⚠️ No direct commits to `main`.
 
 ---
 
-## Contribution Guidelines
+## Contributor Workflow (From Clone to Merge)
 
-* Use clear, descriptive commit messages
-* Keep notebooks focused and well-commented
-* Do not modify raw data once committed
-* All changes must go through Pull Requests
-* Respect branch ownership and review process
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/kcse-eda/kcse_results_eda.git
+cd kcse_results_eda
+```
 
 ---
+
+### 2. Switch to Your Group Branch
+
+Each contributor works under **one group branch** only.
+
+Examples:
+
+```bash
+git checkout eda
+# or
+git checkout data-cleaning
+# or
+git checkout data-extraction
+```
+
+Always confirm:
+
+```bash
+git branch
+```
+
+---
+
+### 3. Create a Feature Branch
+
+Every task gets its **own feature branch**.
+
+```bash
+git checkout -b eda-county-analysis
+```
+
+**Branch naming rule:**
+
+```
+<group>-<short-description>
+```
+
+Examples:
+
+* `eda-gender-analysis`
+* `cleaning-missing-values`
+* `extraction-grade-table`
+
+---
+
+### 4. Do Your Work
+
+* Make changes only related to your task
+* Do not modify unrelated files
+* Do not touch other group branches
+
+---
+
+### 5. Commit Your Changes
+
+```bash
+git add .
+git commit -m "Add county-level KCSE EDA"
+```
+
+Use clear, meaningful messages.
+
+---
+
+### 6. Push Your Feature Branch
+
+```bash
+git push -u origin eda-county-analysis
+```
+
+---
+
+### 7. Open a Pull Request (PR)
+
+On GitHub:
+
+* Base branch: **your group branch** (e.g. `eda`)
+* Compare branch: **your feature branch**
+* Add a short description of what you did
+
+---
+
+### 8. Review & Merge (Group Lead Only)
+
+* Group lead reviews the PR
+* Requests changes if needed
+* Merges into the **group branch**
+
+Members **do not merge their own PRs**.
+
+---
+
+### 9. Group Lead → Integration
+
+When the group branch is stable:
+
+* Group lead opens a PR:
+
+  ```
+  group branch → dev
+  ```
+* Project lead reviews and merges
+
+---
+
+### 10. Final Merge
+
+* Project lead merges:
+
+  ```
+  dev → main
+  ```
+* This marks a milestone or release
+
+---
+
+## What You Must NOT Do
+
+* ❌ Push directly to `main` or `dev`
+* ❌ Work directly on group branches
+* ❌ Mix multiple tasks in one feature branch
+* ❌ Merge your own PR
+
+---
+
+## Workflow Summary
+
+```text
+clone → group branch → feature branch → PR → group branch → dev → main
+```
+
+---
+
+## If You Get Stuck
+
+* Pull latest changes:
+
+```bash
+git pull origin <your-group-branch>
+```
+
+* Ask your group lead before rebasing or resolving conflicts
+
+---
+
 
 ## Tools & Stack
 
