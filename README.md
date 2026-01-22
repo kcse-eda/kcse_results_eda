@@ -119,6 +119,7 @@ Each team has:
   * `reporting`
 
 
+
 ---
 
 ## Contributor Workflow (From Clone to Merge)
@@ -132,53 +133,44 @@ cd kcse_results_eda
 
 ---
 
-### 2. Switch to Your Group Branch
+### 2. Update and Switch to `dev`
 
-Each contributor works under **one group branch** only.
-
-Examples:
+All feature branches should be created from the latest `dev` branch, **never from group branches**:
 
 ```bash
-git checkout eda
-# or
-git checkout data-cleaning
-# or
-git checkout data-extraction
-```
-
-Always confirm:
-
-```bash
-git branch
+git checkout dev
+git pull origin dev
 ```
 
 ---
 
 ### 3. Create a Feature Branch
 
-Every task gets its **own feature branch**.
+Each task gets its **own personal feature branch**:
 
 ```bash
-git checkout -b eda-county-analysis
+git checkout -b <group>-<short-description>-<your-username>
 ```
 
 **Branch naming rule:**
 
 ```
-<group>-<short-description>
+<group>-<short-description>-<your-username>
 ```
 
 Examples:
 
-* `eda-gender-analysis`
-* `cleaning-missing-values`
-* `extraction-grade-table`
+* `eda-gender-analysis-jotham`
+* `cleaning-missing-values-jotham`
+* `extraction-grade-table-jotham`
+
+> **Important:** One branch per contributor. Do not share branches.
 
 ---
 
 ### 4. Do Your Work
 
-* Make changes only related to your task
+* Work only on files related to your task
 * Do not modify unrelated files
 * Do not touch other group branches
 
@@ -191,14 +183,14 @@ git add .
 git commit -m "Add county-level KCSE EDA"
 ```
 
-Use clear, meaningful messages.
+Use **clear, descriptive commit messages**.
 
 ---
 
 ### 6. Push Your Feature Branch
 
 ```bash
-git push -u origin eda-county-analysis
+git push -u origin <group>-<short-description>-<your-username>
 ```
 
 ---
@@ -207,73 +199,96 @@ git push -u origin eda-county-analysis
 
 On GitHub:
 
-* Base branch: **your group branch** (e.g. `eda`)
-* Compare branch: **your feature branch**
-* Add a short description of what you did
+* **Base branch:** your **group branch** (e.g., `eda`)
+* **Compare branch:** your **feature branch**
+* Add a short, clear description of your work
+
+> **Do not merge your own PR.** Only the team lead merges feature branches.
 
 ---
 
 ### 8. Review & Merge (Group Lead Only)
 
-* Group lead reviews the PR
+* Group lead reviews all PRs for their group branch
 * Requests changes if needed
-* Merges into the **group branch**
-
-Members **do not merge their own PRs**.
+* Merges approved feature branches into the **group branch**
 
 ---
 
-### 9. Group Lead → Integration
+### 9. Group Branch → `dev` (Integration)
 
-When the group branch is stable:
+Once the group branch is stable:
 
 * Group lead opens a PR:
 
-  ```
-  group branch → dev
-  ```
+```text
+group branch → dev
+```
+
 * Project lead reviews and merges
 
----
-
-### 10. Final Merge
-
-* Project lead merges:
-
-  ```
-  dev → main
-  ```
-* This marks a milestone or release
+> Only the project lead merges into `dev`.
 
 ---
 
-## What You Must NOT Do
+### 10. Final Merge → `main`
 
-* ❌ Push directly to `main` or `dev`
-* ❌ Work directly on group branches
-* ❌ Mix multiple tasks in one feature branch
-* ❌ Merge your own PR
+When `dev` contains fully tested and approved work:
 
----
-
-## Workflow Summary
+* Project lead opens a PR:
 
 ```text
-clone → group branch → feature branch → PR → group branch → dev → main
+dev → main
 ```
+
+* `main` is **protected**; only approved work is merged
 
 ---
 
-## If You Get Stuck
+### ✅ Key Rules to Remember
 
-* Pull latest changes:
+1. **Never push directly to `dev` or `main`.**
+2. **Feature branches are personal.** One person per branch.
+3. Always **pull the latest `dev`** before creating a feature branch.
+4. Use **clear commit messages** for traceability.
+5. Team leads manage merges to group branches; project lead manages merges to `dev` and `main`.
+6. Members can request to join multiple teams, but must work on one primary branch per task.
 
-```bash
-git pull origin <your-group-branch>
-```
 
-* Ask your group lead before rebasing or resolving conflicts
+---
 
+Correct Workflow Summary
+clone → dev → feature branch → PR → group branch → group lead merges → PR → dev → project lead merges → main
+
+Step-by-Step Explanation
+
+Clone the repository
+
+Update dev (git checkout dev && git pull origin dev)
+
+Create your personal feature branch from dev
+
+Work → commit → push your feature branch
+
+Open a PR to the group branch (e.g., eda)
+
+Group lead reviews & merges your feature branch into the group branch
+
+Once group branch is stable, group lead opens a PR to merge the group branch into dev
+
+Project lead reviews & merges into dev
+
+Finally, project lead merges dev into main (stable, protected)
+
+✅ Key points
+
+Feature branches are always personal
+
+No one pushes directly to dev or main
+
+Teams control reviews and merges to group branches
+
+The PR sequence is: feature → group → dev → main
 ---
 
 
